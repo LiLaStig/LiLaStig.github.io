@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Задание 3 - Возраст</title>
+</head>
+<body>
+    <h1>Задание 3: Уточнение возраста</h1>
+
+    <script>
+        let age;
+        let confirmed = false;
+
+        while (!confirmed) {
+            age = prompt("Введите ваш возраст:", "");
+            confirmed = confirm("Вам " + age + " лет? Это правильно?");
+        }
+
+        alert("Спасибо! Ваш возраст: " + age);
+    </script>
+</body>
+</html>

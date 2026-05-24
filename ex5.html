@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Анкета</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        button {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #45a049; }
+        .hidden { display: none; }
+        .info-block { margin: 10px 0; padding: 10px; background: #e8f5e9; border-radius: 5px; }
+        label { display: block; margin: 8px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Анкета кандидата</h1>
+
+        <button id="fillBtn" onclick="fillForm()">Заполнить анкету</button>
+
+        <div id="userInfo" class="hidden">
+            <h3>Личные данные:</h3>
+            <div class="info-block">
+                <p>Имя: <span id="name"></span></p>
+                <p>Возраст: <span id="age"></span></p>
+                <p>Пол: <span id="gender"></span></p>
+            </div>
+
+            <h3>Навыки:</h3>
+            <label><input type="checkbox" id="skill1"> Высшее образование</label>
+            <label><input type="checkbox" id="skill2"> Знание математики</label>
+            <label><input type="checkbox" id="skill3"> Знание программирования</label>
+            <label><input type="checkbox" id="skill4"> Знание английского</label>
+            <label><input type="checkbox" id="skill5"> Опыт работы</label>
+
+            <button id="hireBtn" class="hidden" onclick="check()">Меня возьмут?</button>
+            <div id="result" class="info-block hidden"></div>
+        </div>
+    </div>
+
+    <script>
+        // Заполнение формы с валидацией (пункт 2)
+        function fillForm() {
+            let name = '';
+            while (!/^[А-Яа-яA-Za-z\s]+$/.test(name)) {
+                name = prompt('Введите ваше имя (только буквы):', '');
+                if (name === null) return;
+            }
+
+            let age = '';
+            while (!/^\d+$/.test(age) || parseInt(age) < 0) {
+                age = prompt('Введите ваш возраст (целое неотрицательное число):', '');
+                if (age === null) return;
+            }
+
+            let gender = '';
+            while (gender !== 'М' && gender !== 'Ж') {
+                gender = prompt('Введите ваш пол (М или Ж):', '');
+                if (gender === null) return;
+                gender = gender.toUpperCase();
+            }
+
+            document.getElementById('name').textContent = name;
+            document.getElementById('age').textContent = age;
+            document.getElementById('gender').textContent = gender;
+
+            // Показать блок (пункт 3) и скрыть кнопку (пункт 5)
+            document.getElementById('userInfo').classList.remove('hidden');
+            document.getElementById('hireBtn').classList.remove('hidden');
+            document.getElementById('fillBtn').classList.add('hidden');
+        }
+
+        // Проверка (пункт 6 - на повышенную: высшее образование + 2 любых)
+        function check() {
+            const skills = [
+                document.getElementById('skill1').checked,
+                document.getElementById('skill2').checked,
+                document.getElementById('skill3').checked,
+                document.getElementById('skill4').checked,
+                document.getElementById('skill5').checked
+            ];
+
+            const result = document.getElementById('result');
+            result.classList.remove('hidden');
+
+            // Высшее образование + еще 2 любых навыка
+            const higherEdu = skills[0];
+            const otherCount = skills.slice(1).filter(s => s).length;
+
+            if (higherEdu && otherCount >= 2) {
+                result.style.background = '#c8e6c9';
+                result.innerHTML = '✅ Вас возьмут на работу!';
+            } else {
+                result.style.background = '#ffcdd2';
+                result.innerHTML = '❌ К сожалению, нет. Нужно: высшее образование + 2 любых навыка.';
+            }
+
+            // Запрет изменения checkbox (пункт 4)
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById('skill' + i).disabled = true;
+            }
+        }
+    </script>
+</body>
+</html>

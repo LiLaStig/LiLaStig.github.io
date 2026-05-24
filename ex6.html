@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Резюме — Иван Попов</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f9fafb;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; opacity: 0.9; }
+
+        section {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        section.visible { opacity: 1; transform: translateY(0); }
+        h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eef;
+            padding-bottom: 10px;
+        }
+
+        /* Accordion */
+        .accordion-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        .accordion-header {
+            padding: 15px;
+            background: #f5f7fa;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .accordion-header:hover { background: #e8ecf3; }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding: 0 15px;
+        }
+        .accordion-content.open {
+            max-height: 200px;
+            padding: 15px;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th { background: #f5f7fa; color: #667eea; }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .skill {
+            padding: 15px;
+            background: #f5f7fa;
+            border-radius: 8px;
+        }
+        .skill-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 1s ease;
+        }
+
+        /* Form */
+        form { display: flex; flex-direction: column; gap: 10px; }
+        input, textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        button {
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        button:hover { background: #5568d3; }
+        .error { color: red; font-size: 13px; }
+
+        /* Адаптив */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            section { margin: 20px 10px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <h1>Иван Попов</h1>
+        <p>Frontend-разработчик | Студент</p>
+    </header>
+
+    <section>
+        <h2>Опыт работы</h2>
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">▸ Компания "WebDev" (2023-2024)</div>
+            <div class="accordion-content">Разработка лендингов на HTML/CSS/JS.</div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">▸ Стажировка в IT-Lab (2022)</div>
+            <div class="accordion-content">Изучение основ веб-разработки.</div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">▸ Фриланс (2021-2022)</div>
+            <div class="accordion-content">Создание небольших сайтов на заказ.</div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Образование</h2>
+        <table>
+            <tr><th>Учебное заведение</th><th>Специальность</th><th>Годы</th></tr>
+            <tr><td>МГТУ "СТАНКИН"</td><td>Информатика</td><td>2020-2024</td></tr>
+            <tr><td>Курсы Яндекс.Практикум</td><td>Frontend</td><td>2023</td></tr>
+        </table>
+    </section>
+
+    <section>
+        <h2>Навыки</h2>
+        <div class="skills-grid">
+            <div class="skill">HTML5 <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+            <div class="skill">CSS3 <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+            <div class="skill">JavaScript <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+            <div class="skill">Git <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Контакты</h2>
+        <form onsubmit="return validateForm(event)">
+            <input type="text" id="fName" placeholder="Имя">
+            <input type="email" id="fEmail" placeholder="Email">
+            <textarea id="fMsg" rows="4" placeholder="Сообщение"></textarea>
+            <div id="formError" class="error"></div>
+            <button type="submit">Отправить</button>
+        </form>
+    </section>
+
+    <script>
+        // Accordion
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            content.classList.toggle('open');
+        }
+
+        // Animation on scroll
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('visible');
+            });
+        });
+        sections.forEach(s => observer.observe(s));
+
+        // Form validation
+        function validateForm(e) {
+            e.preventDefault();
+            const name = document.getElementById('fName').value.trim();
+            const email = document.getElementById('fEmail').value.trim();
+            const msg = document.getElementById('fMsg').value.trim();
+            const error = document.getElementById('formError');
+
+            if (!name || !email || !msg) {
+                error.textContent = 'Заполните все поля!';
+                return false;
+            }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                error.textContent = 'Некорректный email!';
+                return false;
+            }
+            error.textContent = '';
+            alert('Сообщение отправлено!');
+            return false;
+        }
+    </script>
+</body>
+</html>

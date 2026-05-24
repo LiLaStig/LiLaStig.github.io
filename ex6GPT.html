@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Иван Попов — Резюме</title>
+
+  <style>
+    /* =========================
+       БАЗОВЫЕ НАСТРОЙКИ
+    ========================= */
+
+    :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --border: #e5e7eb;
+      --success: #16a34a;
+      --error: #dc2626;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --transition: 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 40px);
+      margin-bottom: 32px;
+      text-align: center;
+      color: var(--text);
+    }
+
+    .section-subtitle {
+      max-width: 680px;
+      margin: -18px auto 40px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* =========================
+       АНИМАЦИЯ ПОЯВЛЕНИЯ СЕКЦИЙ
+    ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       HERO-СЕКЦИЯ
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.16), transparent 36%),
+        linear-gradient(135deg, #ffffff 0%, #f3f7ff 100%);
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 8vw, 76px);
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .hero h2 {
+      font-size: clamp(22px, 4vw, 32px);
+      color: var(--primary);
+      margin-bottom: 22px;
+      font-weight: 600;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 10px 22px rgba(37, 99, 235, 0.28);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 28px rgba(37, 99, 235, 0.32);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      background: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      background: var(--card);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .avatar {
+      width: 170px;
+      height: 170px;
+      margin: 0 auto 24px;
+      border-radius: 50%;
+      background:
+        linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(96, 165, 250, 0.9)),
+        url("https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80");
+      background-size: cover;
+      background-position: center;
+      border: 6px solid #eef4ff;
+    }
+
+    .hero-card h3 {
+      margin-bottom: 8px;
+      font-size: 24px;
+    }
+
+    .hero-card p {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    /* =========================
+       ACCORDION: ОПЫТ РАБОТЫ
+    ========================= */
+
+    .accordion {
+      display: grid;
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .accordion-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+    }
+
+    .accordion-header {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 22px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      cursor: pointer;
+      text-align: left;
+      color: var(--text);
+      transition: background var(--transition);
+    }
+
+    .accordion-header:hover {
+      background: #f8fafc;
+    }
+
+    .accordion-header span:first-child {
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .accordion-icon {
+      min-width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      transition: transform var(--transition);
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .accordion-item.active .accordion-icon {
+      transform: rotate(45deg);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .accordion-body {
+      padding: 0 24px 24px;
+      color: var(--muted);
+    }
+
+    .accordion-body ul {
+      margin-top: 12px;
+      padding-left: 20px;
+    }
+
+    /* =========================
+       ТАБЛИЦА ОБРАЗОВАНИЯ
+    ========================= */
+
+    .table-wrapper {
+      overflow-x: auto;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px;
+    }
+
+    th,
+    td {
+      padding: 18px 22px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: #f8fafc;
+      color: var(--text);
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    td {
+      color: var(--muted);
+    }
+
+    tr:hover td {
+      background: #f9fbff;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* =========================
+       НАВЫКИ С ПРОГРЕСС-БАРАМИ
+    ========================= */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+
+    .skill-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .skill-percent {
+      color: var(--primary);
+    }
+
+    .progress {
+      height: 10px;
+      background: #e8eef8;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary), #60a5fa);
+      transition: width 1.2s ease;
+    }
+
+    .visible .progress-bar {
+      width: var(--value);
+    }
+
+    /* =========================
+       КАРТОЧКИ ПРОЕКТОВ
+    ========================= */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .project-card {
+      position: relative;
+      min-height: 280px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+
+    .project-image {
+      height: 100%;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      color: #ffffff;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+    }
+
+    .project-card:nth-child(2) .project-image {
+      background: linear-gradient(135deg, #0f766e, #14b8a6);
+    }
+
+    .project-card:nth-child(3) .project-image {
+      background: linear-gradient(135deg, #ea580c, #f59e0b);
+    }
+
+    .project-image h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .project-image p {
+      opacity: 0.9;
+    }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.96);
+      padding: 28px;
+      transform: translateY(100%);
+      transition: transform 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .project-card:hover .project-overlay {
+      transform: translateY(0);
+    }
+
+    .project-overlay h4 {
+      font-size: 22px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .project-overlay p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* =========================
+       ФОРМА ОБРАТНОЙ СВЯЗИ
+    ========================= */
+
+    .contact {
+      background: #ffffff;
+    }
+
+    .form {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--card);
+      padding: 32px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font: inherit;
+      outline: none;
+      background: #fbfdff;
+      transition: border var(--transition), box-shadow var(--transition);
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .error-message {
+      min-height: 18px;
+      color: var(--error);
+      font-size: 13px;
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(22, 163, 74, 0.1);
+      color: var(--success);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .success-message.show {
+      display: block;
+    }
+
+    .input-error {
+      border-color: var(--error);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 28px 0;
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: #ffffff;
+    }
+
+    /* =========================
+       АДАПТИВНОСТЬ
+    ========================= */
+
+    @media (max-width: 900px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      section {
+        padding: 60px 0;
+      }
+
+      .hero {
+        padding: 70px 0;
+      }
+
+      .hero-card {
+        padding: 24px;
+      }
+
+      .avatar {
+        width: 130px;
+        height: 130px;
+      }
+
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .accordion-header {
+        align-items: flex-start;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- =========================
+       HERO-СЕКЦИЯ
+  ========================= -->
+  <header class="hero">
+    <div class="container hero-content">
+      <div class="hero-text reveal">
+        <span class="hero-badge">Frontend Developer</span>
+        <h1>Иван Попов</h1>
+        <h2>Веб-разработчик</h2>
+        <p>
+          Создаю адаптивные, быстрые и удобные веб-интерфейсы.
+          Специализируюсь на HTML, CSS, JavaScript и разработке
+          современных пользовательских интерфейсов без лишней сложности.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">Посмотреть проекты</a>
+          <a href="#contact" class="btn btn-outline">Связаться</a>
+        </div>
+      </div>
+
+      <div class="hero-card reveal">
+        <div class="avatar" aria-label="Фото профиля"></div>
+        <h3>Иван Попов</h3>
+        <p>
+          3+ года опыта в создании лендингов, интерфейсов
+          и интерактивных веб-приложений.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================
+         ОПЫТ РАБОТЫ: ACCORDION
+    ========================= -->
+    <section id="experience" class="reveal">
+      <div class="container">
+        <h2 class="section-title">Опыт работы</h2>
+        <p class="section-subtitle">
+          Ключевые места работы и основные обязанности.
+        </p>
+
+        <div class="accordion">
+          <div class="accordion-item active">
+            <button class="accordion-header" type="button">
+              <span>Frontend Developer — Digital Studio</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-body">
+                <strong>2022 — настоящее время</strong>
+                <ul>
+                  <li>Разработка адаптивных интерфейсов для корпоративных сайтов.</li>
+                  <li>Оптимизация производительности и доступности страниц.</li>
+                  <li>Интеграция JavaScript-компонентов без сторонних библиотек.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header" type="button">
+              <span>Junior Web Developer — WebStart</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-body">
+                <strong>2020 — 2022</strong>
+                <ul>
+                  <li>Верстка лендингов по макетам Figma.</li>
+                  <li>Поддержка существующих сайтов клиентов.</li>
+                  <li>Настройка форм, валидации и базовой аналитики.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header" type="button">
+              <span>HTML/CSS Верстальщик — Freelance</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-body">
+                <strong>2019 — 2020</strong>
+                <ul>
+                  <li>Создание промо-страниц для малого бизнеса.</li>
+                  <li>Адаптация сайтов под мобильные устройства.</li>
+                  <li>Работа с SEO-базой и семантической HTML-разметкой.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         ОБРАЗОВАНИЕ
+    ========================= -->
+    <section id="education" class="reveal">
+      <div class="container">
+        <h2 class="section-title">Образование</h2>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Учебное заведение</th>
+                <th>Специальность</th>
+                <th>Годы</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>МГТУ "СТАНКИН"</td>
+                <td>Информационные системы и технологии</td>
+                <td>2016 — 2020</td>
+              </tr>
+              <tr>
+                <td>HTML Academy</td>
+                <td>Frontend-разработка</td>
+                <td>2020</td>
+              </tr>
+              <tr>
+                <td>Coursera</td>
+                <td>JavaScript и веб-программирование</td>
+                <td>2021</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         НАВЫКИ
+    ========================= -->
+    <section id="skills" class="reveal">
+      <div class="container">
+        <h2 class="section-title">Навыки</h2>
+        <p class="section-subtitle">
+          Основные технологии и инструменты, которые использую в работе.
+        </p>
+
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-top">
+              <span>HTML5</span>
+              <span class="skill-percent">95%</span>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" style="--value: 95%;"></div>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-top">
+              <span>CSS3</span>
+              <span class="skill-percent">90%</span>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" style="--value: 90%;"></div>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-top">
+              <span>JavaScript</span>
+              <span class="skill-percent">82%</span>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" style="--value: 82%;"></div>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-top">
+              <span>Flexbox / Grid</span>
+              <span class="skill-percent">92%</span>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" style="--value: 92%;"></div>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-top">
+              <span>Git / GitHub</span>
+              <span class="skill-percent">78%</span>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" style="--value: 78%;"></div>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-top">
+              <span>UI / UX</span>
+              <span class="skill-percent">74%</span>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" style="--value: 74%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         ПРОЕКТЫ
+    ========================= -->
+    <section id="projects" class="reveal">
+      <div class="container">
+        <h2 class="section-title">Проекты</h2>
+        <p class="section-subtitle">
+          Несколько примеров учебных и коммерческих проектов.
+        </p>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-image">
+              <h3>Portfolio Site</h3>
+              <p>Персональный сайт</p>
+            </div>
+            <div class="project-overlay">
+              <h4>Portfolio Site</h4>
+              <p>
+                Адаптивное портфолио с плавной анимацией,
+                секциями проектов и формой обратной связи.
+              </p>
+              <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JS</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image">
+              <h3>Task Manager</h3>
+              <p>Менеджер задач</p>
+            </div>
+            <div class="project-overlay">
+              <h4>Task Manager</h4>
+              <p>
+                Мини-приложение для управления задачами:
+                добавление, удаление, фильтрация и сохранение в localStorage.
+              </p>
+              <div class="tags">
+                <span class="tag">JavaScript</span>
+                <span class="tag">LocalStorage</span>
+                <span class="tag">CSS Grid</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image">
+              <h3>Landing Page</h3>
+              <p>Коммерческий лендинг</p>
+            </div>
+            <div class="project-overlay">
+              <h4>Landing Page</h4>
+              <p>
+                Быстрая посадочная страница для продукта
+                с адаптивной сеткой, CTA-блоками и оптимизированной версткой.
+              </p>
+              <div class="tags">
+                <span class="tag">Responsive</span>
+                <span class="tag">Flexbox</span>
+                <span class="tag">SEO</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         ФОРМА ОБРАТНОЙ СВЯЗИ
+    ========================= -->
+    <section id="contact" class="contact reveal">
+      <div class="container">
+        <h2 class="section-title">Связаться со мной</h2>
+        <p class="section-subtitle">
+          Заполните форму, и я отвечу вам в ближайшее время.
+        </p>
+
+        <form class="form" id="contactForm" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Имя</label>
+              <input type="text" id="name" name="name" placeholder="Ваше имя" />
+              <span class="error-message" id="nameError"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="example@mail.com" />
+              <span class="error-message" id="emailError"></span>
+            </div>
+
+            <div class="form-group full">
+              <label for="message">Сообщение</label>
+              <textarea id="message" name="message" placeholder="Напишите сообщение"></textarea>
+              <span class="error-message" id="messageError"></span>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Отправить</button>
+
+          <div class="success-message" id="successMessage">
+            Спасибо! Сообщение успешно прошло проверку.
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2025 Иван Попов. Резюме для GitHub Pages.
+    </div>
+  </footer>
+
+  <script>
+    /* =========================
+       ACCORDION
+    ========================= */
+
+    const accordionItems = document.querySelectorAll(".accordion-item");
+
+    function setAccordionHeight(item) {
+      const content = item.querySelector(".accordion-content");
+
+      if (item.classList.contains("active")) {
+        content.style.maxHeight = content.scrollHeight + "px";
+      } else {
+        content.style.maxHeight = null;
+      }
+    }
+
+    accordionItems.forEach((item) => {
+      const header = item.querySelector(".accordion-header");
+
+      setAccordionHeight(item);
+
+      header.addEventListener("click", () => {
+        const isActive = item.classList.contains("active");
+
+        accordionItems.forEach((otherItem) => {
+          otherItem.classList.remove("active");
+          setAccordionHeight(otherItem);
+        });
+
+        if (!isActive) {
+          item.classList.add("active");
+          setAccordionHeight(item);
+        }
+      });
+    });
+
+    window.addEventListener("resize", () => {
+      accordionItems.forEach(setAccordionHeight);
+    });
+
+    /* =========================
+       АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ ПРОКРУТКЕ
+    ========================= */
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      {
+        threshold: 0.15
+      }
+    );
+
+    revealElements.forEach((element) => {
+      revealObserver.observe(element);
+    });
+
+    /* =========================
+       ВАЛИДАЦИЯ ФОРМЫ
+    ========================= */
+
+    const form = document.getElementById("contactForm");
+
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const messageInput = document.getElementById("message");
+
+    const nameError = document.getElementById("nameError");
+    const emailError = document.getElementById("emailError");
+    const messageError = document.getElementById("messageError");
+    const successMessage = document.getElementById("successMessage");
+
+    function setError(input, errorElement, message) {
+      input.classList.add("input-error");
+      errorElement.textContent = message;
+    }
+
+    function clearError(input, errorElement) {
+      input.classList.remove("input-error");
+      errorElement.textContent = "";
+    }
+
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function validateForm() {
+      let isValid = true;
+
+      const nameValue = nameInput.value.trim();
+      const emailValue = emailInput.value.trim();
+      const messageValue = messageInput.value.trim();
+
+      clearError(nameInput, nameError);
+      clearError(emailInput, emailError);
+      clearError(messageInput, messageError);
+      successMessage.classList.remove("show");
+
+      if (nameValue.length < 2) {
+        setError(nameInput, nameError, "Введите имя минимум из 2 символов.");
+        isValid = false;
+      }
+
+      if (!validateEmail(emailValue)) {
+        setError(emailInput, emailError, "Введите корректный email.");
+        isValid = false;
+      }
+
+      if (messageValue.length < 10) {
+        setError(messageInput, messageError, "Сообщение должно содержать минимум 10 символов.");
+        isValid = false;
+      }
+
+      return isValid;
+    }
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (validateForm()) {
+        successMessage.classList.add("show");
+        form.reset();
+      }
+    });
+
+    /* Очистка ошибок во время ввода */
+    [nameInput, emailInput, messageInput].forEach((input) => {
+      input.addEventListener("input", () => {
+        validateForm();
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Задание 1 - Функции</title>
+</head>
+<body>
+    <h1>Задание 1: Функции</h1>
+
+    <script>
+        // Минимум из двух чисел
+        function min(a, b) {
+            return a < b ? a : b;
+        }
+
+        // Максимум из двух чисел
+        function max(a, b) {
+            return a > b ? a : b;
+        }
+
+        // Проверка на равенство
+        function equal(a, b) {
+            return a === b;
+        }
+
+        // Проверка работы функций
+        console.log("min(5, 10) =", min(5, 10));       // 5
+        console.log("max(5, 10) =", max(5, 10));       // 10
+        console.log("equal(5, 5) =", equal(5, 5));     // true
+        console.log("equal(5, 10) =", equal(5, 10));   // false
+
+        // Вывод на страницу
+        document.body.innerHTML += `<p>min(5, 10) = ${min(5, 10)}</p>`;
+        document.body.innerHTML += `<p>max(5, 10) = ${max(5, 10)}</p>`;
+        document.body.innerHTML += `<p>equal(5, 5) = ${equal(5, 5)}</p>`;
+    </script>
+</body>
+</html>
